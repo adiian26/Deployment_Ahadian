@@ -49,6 +49,14 @@ model.fit(X_train, y_train)
 joblib.dump(model, MODEL_FILENAME)
 print(f"Model disimpan sebagai {MODEL_FILENAME}")
 
+# Contoh: preprocessing
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', StandardScaler(), ['Price']),
+        ('cat', OneHotEncoder(drop='first'), ['MenuCategory'])
+    ]
+)
+
 # Pipeline
 pipeline = Pipeline([
     ('preprocess', preprocessor),
